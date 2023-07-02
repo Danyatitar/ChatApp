@@ -1,0 +1,10 @@
+{
+  "server": {
+    "port": 8082,
+    "linkFE": "http://localhost:3000"
+  },
+  "database": {
+    "srv": "mongodb://localhost:27017/recruiterdb"
+  },
+  "firebase": {}
+}
