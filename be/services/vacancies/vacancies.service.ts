@@ -1,5 +1,5 @@
 import {VacancyStatus} from '@utils/enums';
-import {IVacancyRequest} from 'interfaces/vacancies/requests/IVacancyRequest';
+
 import {validateCreateVacancy, validateUpdateVacancy} from './vacancies.validate';
 import {vacanciesRepository} from '../../repositories';
 import {IGetVacancy} from 'interfaces/vacancies/responses/IGetVacancy';

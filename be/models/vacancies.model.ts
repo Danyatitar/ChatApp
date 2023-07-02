@@ -23,7 +23,6 @@ const VacanciesSchema = new Schema(
   }
 );
 
-// Implement middleware to generate default value for openedDate
 VacanciesSchema.pre('save', function (next) {
   if (!this.openedDate) {
     this.openedDate = new Date();
