@@ -10,10 +10,8 @@ async function verifyToken(req: Request, res: Response, next) {
   console.log('Verify user token ...');
 }
 async function checkPhone(req: Request, res: Response, next) {
-  console.log(1);
   try {
     const user = await usersService.getUserByPhone(req.body.phoneNumber);
-    console.log(user);
     if (user) {
       throw badRequest('such user already exists', 'UserExists');
     }

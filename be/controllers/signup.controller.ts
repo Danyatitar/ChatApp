@@ -28,7 +28,6 @@ async function signUp(req: Request, res: Response, next) {
       phoneNumber: req.body.phoneNumber
     };
     await usersService.createUser(user);
-    console.log(1);
     const token = jwt.sign(user, 'userSecret', {expiresIn: '72h'});
     res.cookie('token', String(token), {
       httpOnly: true
@@ -36,7 +35,6 @@ async function signUp(req: Request, res: Response, next) {
 
     res.status(200).json({message: 'Login successful'});
   } catch (e) {
-    console.log(e);
     next(e);
   }
 }
