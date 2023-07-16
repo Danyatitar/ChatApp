@@ -4,7 +4,7 @@
     "linkFE": "http://localhost:3000"
   },
   "database": {
-    "srv": "mongodb://localhost:27017/recruiterdb"
+    "srv": "mongodb+srv://danylo:query123@cluster0.a55nkru.mongodb.net/chatapp"
   },
   "firebase": {}
 }
