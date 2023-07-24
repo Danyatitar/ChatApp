@@ -1,2 +1,2 @@
 export * as VacanciesController from './vacancies.controller';
-export * as SignUpController from './signup.controller';
+export * as AuthController from './auth.controller';
