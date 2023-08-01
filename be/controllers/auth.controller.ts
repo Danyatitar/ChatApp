@@ -33,7 +33,7 @@ async function signUp(req: Request, res: Response, next) {
       httpOnly: true
     });
 
-    res.status(200).json({message: 'Login successful'});
+    res.status(200).json({message: 'Register successful'});
   } catch (e) {
     next(e);
   }

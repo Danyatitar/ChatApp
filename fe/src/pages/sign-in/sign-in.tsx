@@ -1,18 +1,14 @@
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+import { Box, Button, TextField } from "@mui/material";
+import { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import AppPath from "../../common/paths";
+import * as styles from "./sign-in.styles";
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -21,38 +17,11 @@ const LoginPage = () => {
         phoneNumber,
         password,
       });
-
-      setLoggedIn(true);
+      navigate(AppPath.ROOT);
     } catch (error) {
       console.log(error);
     }
   };
-
-  //   const handleSignup = (e: any) => {
-  //     e.preventDefault();
-  //     // Perform signup logic and set the isLoggedIn state to true
-  //     setLoggedIn(true);
-  //   };
-
-  const handleLogout = async () => {
-    try {
-      await axios.post("http://localhost:8082/api/auth/logout");
-      setLoggedIn(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (isLoggedIn) {
-    return (
-      <Container>
-        <Typography variant="h4">Welcome, {phoneNumber}!</Typography>
-        <Button variant="contained" color="secondary" onClick={handleLogout}>
-          Logout
-        </Button>
-      </Container>
-    );
-  }
 
   return (
     <Box
@@ -61,9 +30,10 @@ const LoginPage = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        height: "100%",
       }}
     >
-      <Typography variant="h4">Login</Typography>
+      <h1>Login</h1>
       <form
         onSubmit={handleLogin}
         style={{
@@ -71,25 +41,40 @@ const LoginPage = () => {
           flexDirection: "column",
           width: "fit-content",
           justifySelf: "center",
+          gap: "0.5rem",
+          minWidth: "250px",
         }}
       >
         <TextField
           label="Phone Number"
+          variant="outlined"
+          autoComplete="off"
+          sx={styles.TextField}
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <TextField
           label="Password"
           type="password"
+          variant="outlined"
+          sx={styles.TextField}
+          inputProps={{
+            form: {
+              autocomplete: "off",
+            },
+          }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" sx={styles.Button}>
           Login
         </Button>
-        <Typography variant="body1">
-          Don't have an account yet? Register one
-        </Typography>
+        <p>
+          Don't have an account yet?{" "}
+          <Link to={AppPath.SIGNUP} className="link">
+            Register one
+          </Link>
+        </p>
       </form>
     </Box>
   );
